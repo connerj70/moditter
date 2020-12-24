@@ -1,0 +1,47 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.register-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;   
+    margin-top: 5px;
+}
+
+.register-label {
+    font-size: 18px;
+}
+
+.register-label-container {
+    margin-top: 10px;
+}
+
+.register-button {
+    font-size: 18px;
+    color: black;
+    padding: 15px 25px;
+    margin-top: 10px;
+    background-color: #B5D3E7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-twitter-container {
+    margin-top: 10px;
+}
+
+.register-twitter-button {
+    border: 1px solid #B5D3E7;
+    background: #B5D3E7;
+    padding: 10px 20px;
+    cursor: pointer;
+}

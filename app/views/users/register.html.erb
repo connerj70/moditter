@@ -1,0 +1,37 @@
+<h1>Register Page</h1>
+
+<% if @user.errors.any? %>
+  <h3>Errors</h3>
+  <% @user.errors.full_messages.each do |e| %>
+    <div class="error"><%= e %></div>
+  <% end %>
+<% end %>
+
+<div class="register-form-container">
+  <%= form_with model: @user, url: users_path, local: true do |f| %>
+    <div>
+      <div class="register-label-container">
+      <%= f.label :email, class: 'register-label' %>
+      </div>
+      <div>
+      <%= f.text_field :email, class: "register-input" %>
+      </div>
+    </div>
+    <div>
+      <div class="register-label-container">
+      <%= f.label :password, class: 'register-label' %>
+      </div>
+      <div>
+      <%= f.password_field :password, class: 'register-input' %>
+      </div>
+    </div>
+    <%= f.submit 'Register', class: 'register-button' %>
+  <% end %>
+
+  <%= form_with url: register_twitter_path, local: true do |f| %>
+    <div class="register-twitter-container">
+      <%= f.submit 'Register with Twitter', class: 'register-twitter-button' %>
+    </div>
+  <% end %>
+
+</div>
