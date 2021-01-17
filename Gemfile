@@ -20,7 +20,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'simple_oauth', '~> 0.3.1'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'httparty'
-gem 'twitter'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

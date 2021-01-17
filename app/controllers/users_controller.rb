@@ -1,4 +1,8 @@
+ require_relative "../../gems/twitter/lib/twitter"
+
 class UsersController < ApplicationController
+  before_action :authenticate_user, only: [:show]
+
   def register
     @user = User.new
   end
@@ -6,25 +10,7 @@ class UsersController < ApplicationController
   def register_twitter
     logger.info("Starting register_twitter")
 
-    header = SimpleOAuth::Header.new('POST', 'https://api.twitter.com/oauth/request_token', {}, {:consumer_secret => ENV['TWITTER_CONSUMER_SECRET'], :consumer_key => ENV['TWITTER_CONSUMER_KEY']})
-    url = URI("https://api.twitter.com/oauth/request_token")
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    
-    request = Net::HTTP::Post.new(url)
-    request["Authorization"] = header.to_s
-
-    logger.info("About to make request_token request")
-
-    response = http.request(request)
-
-    logger.info("Finished request_token request")
-
-    body = response.read_body
-
-    oauth_token = body.split("&")[0].split("=")[1]
+    oauth_token = Twitter.get_oauth_token
 
     redirect_url = "https://api.twitter.com/oauth/authorize?oauth_token=#{oauth_token}"
 
@@ -36,12 +22,21 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.find(params[:id])
   end
 
   private
 
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def authenticate_user
+    # TODO: We actually want to check here if their oauth_token is the same that matches the one we have saved in the DB,
+    # If it's not we redirect them to the register page.
+    unless session[:oauth_token].present?
+      flash[:error] = "You must be logged in to acces this section"
+      redirect_to register_path
+    end
   end
 end
