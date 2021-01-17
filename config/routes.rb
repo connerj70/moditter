@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#register'
   post '/register_twitter', to: 'users#register_twitter'
   resources :users, except: [:new] 
+
+  # Callbacks
+  get '/twitter_callback', to: 'callbacks#twitter_callback'
 end

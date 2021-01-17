@@ -4,26 +4,39 @@ class UsersController < ApplicationController
   end
 
   def register_twitter
-    header = SimpleOAuth::Header.new('POST', 
-                            'https://api.twitter.com/oauth/request_token', 
-                            SimpleOAuth::Header.default_options,
-                            {callback: ENV['TWITTER_CALLBACK_URL'], consumer_key: ENV['TWITTER_CONSUMER_KEY']}
-                           )
-    p header.to_s
-    p header.url
+    logger.info("Starting register_twitter")
 
-    puts HTTParty.post(header.url, {headers: {'Authorization': header.to_s}})
+    header = SimpleOAuth::Header.new('POST', 'https://api.twitter.com/oauth/request_token', {}, {:consumer_secret => ENV['TWITTER_CONSUMER_SECRET'], :consumer_key => ENV['TWITTER_CONSUMER_KEY']})
+    url = URI("https://api.twitter.com/oauth/request_token")
 
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    
+    request = Net::HTTP::Post.new(url)
+    request["Authorization"] = header.to_s
+
+    logger.info("About to make request_token request")
+
+    response = http.request(request)
+
+    logger.info("Finished request_token request")
+
+    body = response.read_body
+
+    oauth_token = body.split("&")[0].split("=")[1]
+
+    redirect_url = "https://api.twitter.com/oauth/authorize?oauth_token=#{oauth_token}"
+
+    logger.info("Redirecting to twitter for authorization")
+
+    redirect_to redirect_url
+  rescue StandardError => e
+    logger.error("Error in register_twitter #{e}")
   end
 
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      render :show
-    else
-      p @user.errors
-      render :register
-    end
+  def show
+
   end
 
   private

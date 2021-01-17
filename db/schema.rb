@@ -10,14 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_18_191046) do
+ActiveRecord::Schema.define(version: 2021_01_17_194036) do
+
+  create_table "oauths", force: :cascade do |t|
+    t.string "oauth_token"
+    t.string "oauth_token_secret"
+    t.string "screen_name"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "oauth_user_id"
+    t.index ["user_id"], name: "index_oauths_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
   end
 
+  add_foreign_key "oauths", "users"
 end
