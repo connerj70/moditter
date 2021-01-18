@@ -1,12 +1,5 @@
 <h1>Register Page</h1>
 
-<% if @user.errors.any? %>
-  <h3>Errors</h3>
-  <% @user.errors.full_messages.each do |e| %>
-    <div class="error"><%= e %></div>
-  <% end %>
-<% end %>
-
 <div class="register-form-container">
   <%= form_with url: register_twitter_path, local: true do |f| %>
     <div class="register-twitter-container">

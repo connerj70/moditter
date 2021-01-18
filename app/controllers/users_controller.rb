@@ -3,19 +3,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: [:show]
 
-  def register
-    @user = User.new
-  end
-
   def register_twitter
     logger.info("Starting register_twitter")
-
     oauth_token = Twitter.get_oauth_token
-
-    redirect_url = "https://api.twitter.com/oauth/authorize?oauth_token=#{oauth_token}"
-
+    redirect_url = Twitter.generate_redirect_url(oauth_token: oauth_token)
     logger.info("Redirecting to twitter for authorization")
-
     redirect_to redirect_url
   rescue StandardError => e
     logger.error("Error in register_twitter #{e}")
