@@ -5,7 +5,8 @@ RSpec.describe Twitter do
     expect(Twitter::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "can get a users timeline" do
+    body = Twitter.get_timeline()
+    puts "BODY #{body}"
   end
 end

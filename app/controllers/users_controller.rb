@@ -15,13 +15,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+
+    # Go make a request to get this User's timeline.
+
+  rescue ActiveRecord::RecordNotFound => e
+    flash[:error] = "User not found"
+    redirect_to register_path
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:email, :password)
-  end
 
   def authenticate_user
     # TODO: We actually want to check here if their oauth_token is the same that matches the one we have saved in the DB,
