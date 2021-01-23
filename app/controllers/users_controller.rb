@@ -1,4 +1,4 @@
- require_relative "../../gems/twitter/lib/twitter"
+require_relative "../../gems/twitter/lib/twitter"
 
 class UsersController < ApplicationController
   before_action :authenticate_user, only: [:show]
@@ -15,21 +15,22 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
-    # Go make a request to get this User's timeline.
+    timelineJSON = Twitter.get_timeline(oauth_token: session[:oauth_token], oauth_token_secret: session[:oauth_token_secret])
+    @timeline = JSON.parse(timelineJSON)
 
   rescue ActiveRecord::RecordNotFound => e
     flash[:error] = "User not found"
     redirect_to register_path
+  rescue StandardError => e 
+    flash[:error] = "There was an unexpected error"
+    logger.error("There was an unexpected error in show: #{e}")
   end
 
   private
 
   def authenticate_user
-    # TODO: We actually want to check here if their oauth_token is the same that matches the one we have saved in the DB,
-    # If it's not we redirect them to the register page.
-    unless session[:oauth_token].present?
-      flash[:error] = "You must be logged in to acces this section"
+    unless session[:oauth_token].present? && session[:oauth_token_secret].present?
+      flash[:error] = "You must be logged in to access this section"
       redirect_to register_path
     end
   end
