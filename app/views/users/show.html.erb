@@ -2,14 +2,8 @@
 
 <h1>Welcome To Moditter <%= @user.username%>!</h1>
 
-<div data-controller="users">
-    <% if @timeline.any? %>
-        <% @timeline.each do |t| %>
-            <div class="tweet-container">
-                <p class="hidden"><%= t['text'] %></p>
-                <p><%= t['user']['screen_name'] %></p>
-                <button data-action="click->users#toggleHide" >Show this Tweet!</button>
-            </div>
-        <% end %>
+<% if @timeline.any? %>
+    <% @timeline.each do |t| %>
+        <%= render "tweets/tweet", tweet: t, user: @user %>
     <% end %>
-</div>
+<% end %>

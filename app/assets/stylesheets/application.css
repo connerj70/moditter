@@ -23,3 +23,8 @@
      padding: 10px;
      opacity: 0.8;  
  }
+
+ turbo-frame {
+     display: block;
+     border: 1px solid blue;
+ }

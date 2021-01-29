@@ -1,9 +1,5 @@
-<h1>Register Page</h1>
+<h1>Sign In Page</h1>
 
 <div class="register-form-container">
-  <%= form_with url: register_twitter_path, local: true do |f| %>
-    <div class="register-twitter-container">
-      <%= f.submit 'Register with Twitter', class: 'register-twitter-button' %>
-    </div>
-  <% end %>
+  <%= link_to "Sign in with Twitter", register_twitter_path, class: 'register-twitter-button' %>
 </div>
