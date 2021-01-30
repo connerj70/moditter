@@ -32,6 +32,16 @@ module Twitter
             Twitter.logger.info("About to read body from /home_timeline.json")
 
             body = response.read_body
+            
+            body_parsed = JSON.parse(body)
+            
+            puts "BODY: #{body_parsed}"
+
+            if body_parsed.include?("errors")
+                raise RateLimitExceeded if ['errors'][0]['message'].include?("Rate limit exceeded")
+            end
+
+            return body_parsed
         end
     end
 end

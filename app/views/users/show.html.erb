@@ -1,9 +1,9 @@
-<h1>Users show page</h1>
-
 <h1>Welcome To Moditter <%= @user.username%>!</h1>
 
-<% if @timeline.any? %>
-    <% @timeline.each do |t| %>
-        <%= render "tweets/tweet", tweet: t, user: @user %>
-    <% end %>
-<% end %>
+<div class="tweets-container">
+  <% if !@timeline.nil? && @timeline.any? %>
+      <% @timeline.each do |t| %>
+          <%= render "tweets/tweet", tweet: t, user: @user %>
+      <% end %>
+  <% end %>
+</div>

@@ -12,11 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2021_01_29_003752) do
 
-  create_table "bobbies", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "oauths", force: :cascade do |t|
     t.string "oauth_token"
     t.string "oauth_token_secret"
