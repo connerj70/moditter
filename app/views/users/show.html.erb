@@ -1,6 +1,6 @@
-<h1>Welcome To Moditter <%= @user.username%>!</h1>
 
 <div class="tweets-container">
+  <h1 class="mt-2 mb-2 font-bold text-lg">Welcome To Moditter <%= @user.username%>!</h1>
   <% if !@timeline.nil? && @timeline.any? %>
       <% @timeline.each do |t| %>
           <%= render "tweets/tweet", tweet: t, user: @user %>

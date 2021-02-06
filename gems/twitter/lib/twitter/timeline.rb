@@ -35,8 +35,8 @@ module Twitter
             
             body_parsed = JSON.parse(body)
             
-            if body_parsed.include?("errors")
-                raise RateLimitExceeded if ['errors'][0]['message'].include?("Rate limit exceeded")
+            if body_parsed&.include?("errors")
+                raise RateLimitExceeded if ['errors'][0]['message']&.include?("Rate limit exceeded")
             end
 
             return body_parsed

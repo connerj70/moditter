@@ -1,11 +1,13 @@
-<div class="tweet-container">
+<div class="mt-3 border-2 border-solid border-blue-300 w-full p-4">
   <%= turbo_frame_tag "tweet" do %>
-    <p><%= tweet['user']['screen_name'] %></p>
-    <%= form_with url: tweet_views_path do |f| %>
-      <%= f.hidden_field(:user_id, value: user.id) %>
-      <%= f.hidden_field(:tweet_content, value: tweet['text']) %>
-      <%= f.hidden_field(:tweet_user, value: tweet['user']['screen_name']) %>
-      <%= f.submit "Show this Tweet!", class: "show-tweet" %>
+    <% if tweet.present? && tweet.is_a?(Hash) %>
+      <p class="font-bold mt-2 mb-2"><%= tweet['user']['screen_name'] %></p>
+      <%= form_with url: tweet_views_path do |f| %>
+        <%= f.hidden_field(:user_id, value: user.id) %>
+        <%= f.hidden_field(:tweet_content, value: tweet['text']) %>
+        <%= f.hidden_field(:tweet_user, value: tweet['user']['screen_name']) %>
+        <%= f.submit "Show this Tweet!", class: "bg-blue-500 p-2 rounded-lg text-white cursor-pointer text-md" %>
+      <% end %>
     <% end %>
   <% end%>
 </div>

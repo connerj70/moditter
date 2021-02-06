@@ -7,12 +7,13 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
-    <nav class="main-nav">
-      <%= link_to "Home" %>
-      <%= link_to "About" %>
+    <nav class="bg-blue-300 h-5 w-screen p-6 flex justify-left">
+      <%= link_to "Home", class: "mr-4" %>
+      <%= link_to "About", class: "mr-4" %>
     </nav>
     
     <% if flash.any? %>
