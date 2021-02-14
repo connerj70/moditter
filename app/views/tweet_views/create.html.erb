@@ -1,4 +1,7 @@
 <%= turbo_frame_tag "tweet" do %>
   <p><%= @tweet_content %></p>
+  <% if @tweet_image_url.present? %>
+    <img src=<%= @tweet_image_url %> />
+  <% end %>
   <span><%= @tweet_user %></span>
 <% end %>

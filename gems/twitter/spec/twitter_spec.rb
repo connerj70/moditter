@@ -11,6 +11,6 @@ RSpec.describe Twitter do
   end
 
   it 'can get a tweet' do
-    Twitter.get_tweet()
+    puts Twitter.get_tweet(tweet_id: 1360690294723805186, bearer_token: ENV['TWITTER_BEARER_TOKEN'])
   end
 end

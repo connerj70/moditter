@@ -20,6 +20,12 @@ class TweetViewsController < ApplicationController
       @tweet_content = tweet['data']['text']
       @tweet_user = params[:tweet_user]
 
+      puts tweet
+      if tweet['includes']
+        if tweet['includes']['media'].any?
+          @tweet_image_url = tweet['includes']['media'][0]['url']
+        end
+      end
     rescue ActiveRecord::RecordNotFound => e
       flash[:error] = "User not found"
       redirect_to register_path
