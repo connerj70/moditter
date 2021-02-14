@@ -9,4 +9,8 @@ RSpec.describe Twitter do
     body = Twitter.get_timeline()
     puts "BODY #{body}"
   end
+
+  it 'can get a tweet' do
+    Twitter.get_tweet()
+  end
 end

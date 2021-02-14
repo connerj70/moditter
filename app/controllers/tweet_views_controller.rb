@@ -1,3 +1,5 @@
+require_relative '../../gems/twitter/lib/twitter'
+
 class TweetViewsController < ApplicationController
     def create
       user = User.find(params[:user_id])
@@ -14,7 +16,8 @@ class TweetViewsController < ApplicationController
       end
 
       tweet_view.increment!(:count)
-      @tweet_content = params[:tweet_content]
+      tweet = Twitter.get_tweet(tweet_id: params[:tweet_id], bearer_token: ENV['TWITTER_BEARER_TOKEN'])
+      @tweet_content = tweet['data']['text']
       @tweet_user = params[:tweet_user]
 
     rescue ActiveRecord::RecordNotFound => e

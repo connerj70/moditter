@@ -1,6 +1,18 @@
 
 <div class="tweets-container">
   <h1 class="mt-2 mb-2 font-bold text-lg">Welcome To Moditter <%= @user.username%>!</h1>
+  <p>
+    Moditter is a twitter client that automatically moderates the amount of tweets you can read.
+
+    Twitter was set up to constrain the amount of characters one can type, but there is no limit on how many successive tweets
+
+    a user can read/write.
+
+    Moditter attempts to remedy this situation by only allowing you to view 5 tweets per day. 
+  </p>
+  <p>
+    Moditter will allow you to still keep tabs on your favorite people without going overboard.
+  </p>
   <% if !@timeline.nil? && @timeline.any? %>
       <% @timeline.each do |t| %>
           <%= render "tweets/tweet", tweet: t, user: @user %>
