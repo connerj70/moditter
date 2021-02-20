@@ -12,8 +12,8 @@
 
   <body>
     <nav class="bg-blue-300 h-5 w-screen p-6 flex justify-left">
-      <%= link_to "Home", class: "mr-4" %>
-      <%= link_to "About", class: "mr-4" %>
+      <%= link_to "Home", root_path, class: "mr-4 text-blue" %>
+      <%= link_to "About", '/', class: "mr-4" %>
     </nav>
     
     <% if flash.any? %>

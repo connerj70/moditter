@@ -59,7 +59,7 @@ module Twitter
         end
 
         def generate_redirect_url(oauth_token: "")
-            "https://api.twitter.com/oauth/authorize?oauth_token=#{oauth_token}"
+            "https://api.twitter.com/oauth/authenticate?oauth_token=#{oauth_token}"
         end
     end
 end
