@@ -5,7 +5,7 @@ class CallbacksController < ApplicationController
         logger.info('Starting twitter callback')
         body = Twitter.get_access_token(oauth_verifier: params[:oauth_verifier], oauth_token: params[:oauth_token])
         oauth_token, oauth_token_secret, user_id, screen_name = Twitter.extract_access_token_params(body: body)
-
+    
         user = User.find_by(username: screen_name)
         if user.nil?
             logger.info("Creating a new user")
