@@ -10,5 +10,6 @@ module Moditter
   class Application < Rails::Application
     config.load_defaults 6.0
     config.action_view.form_with_generates_remote_forms = false
+    config.assets.initialize_on_precompile=false
   end
 end
