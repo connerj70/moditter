@@ -12,8 +12,9 @@
 
   <body>
     <nav class="bg-blue-300 h-5 w-screen p-6 flex justify-left">
+      <h3 class="mr-6">MODITTER</h3>
       <%= link_to "Home", root_path, class: "mr-4 text-blue" %>
-      <%= link_to "About", '/', class: "mr-4" %>
+      <%= link_to "About", '/about', class: "mr-4" %>
     </nav>
     
     <% if flash.any? %>
