@@ -2,8 +2,9 @@
 
 require_relative "twitter/version"
 require_relative "twitter/oauth"
-require_relative "twitter/timeline.rb"
-require_relative "twitter/tweet.rb"
+require_relative "twitter/timeline"
+require_relative "twitter/tweet"
+require_relative "twitter/client"
 
 require "logger"
 
