@@ -4,7 +4,7 @@ class CallbacksController < ApplicationController
   def twitter_callback
     logger.info('Starting twitter callback')
     twitter_client = Twitter::Client.new(consumer_secret: ENV['TWITTER_CONSUMER_SECRET'],
-                                         consumer_key: ENV['TWITTER_CONSUMER_KEY'])
+                                         consumer_key: ENV['TWITTER_CONSUMER_KEY'], local: true)
     body = twitter_client.get_access_token(oauth_verifier: params[:oauth_verifier], oauth_token: params[:oauth_token])
     puts "GET ACCESS TOKEN #{body}"
     oauth_token, oauth_token_secret, user_id, screen_name = twitter_client.extract_access_token_params(body: body)

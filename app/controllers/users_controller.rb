@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def register_twitter
     logger.info('Starting register_twitter')
     twitter_client = Twitter::Client.new(consumer_secret: ENV['TWITTER_CONSUMER_SECRET'],
-                                         consumer_key: ENV['TWITTER_CONSUMER_KEY'])
+                                         consumer_key: ENV['TWITTER_CONSUMER_KEY'], local: true)
     oauth_token = twitter_client.get_oauth_token
     puts "OAUTH TOKEN #{oauth_token}"
     redirect_url = twitter_client.generate_redirect_url(oauth_token: oauth_token)

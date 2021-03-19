@@ -5,7 +5,7 @@ module Twitter
   class Client
     def initialize(consumer_key:, consumer_secret:, local: false)
       @oauth = if local
-                 Twitter::Mock::OAuth
+                 Twitter::MockOAuth.new
                else
                  Twitter::OAuth.new(consumer_secret: consumer_secret, consumer_key: consumer_key)
                end

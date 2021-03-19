@@ -6,6 +6,8 @@ require_relative "twitter/timeline"
 require_relative "twitter/tweet"
 require_relative "twitter/client"
 
+require_relative "twitter/mock_oauth"
+
 require "logger"
 
 module Twitter
