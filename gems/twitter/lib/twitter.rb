@@ -7,6 +7,8 @@ require_relative "twitter/tweet"
 require_relative "twitter/client"
 
 require_relative "twitter/mock_oauth"
+require_relative "twitter/mock_timeline"
+require_relative "twitter/mock_tweet"
 
 require "logger"
 

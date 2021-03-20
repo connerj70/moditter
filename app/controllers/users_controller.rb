@@ -19,8 +19,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @timeline = Twitter.get_timeline(oauth_token: session[:oauth_token],
-                                     oauth_token_secret: session[:oauth_token_secret])
+    local = ENV["RAILS_ENV"] == "production" ? false : true
+    twitter_client = Twitter::Client.new(oauth_token: session[:oauth_token], oauth_token_secret: session[:oauth_token_secret], local: local)
+    @timeline = twitter_client.fetch_timeline
 
   rescue ActiveRecord::RecordNotFound => e
     flash[:error] = 'User not found'
