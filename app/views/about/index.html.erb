@@ -1,9 +1,9 @@
 <p class="p-6">Moditter is an app that helps you moderate your twitter usage. You are allowed to view 5 tweets per day. Before viewing a tweet you can see who the author is.</p>
 
 <p class="p-6">Right now we only require read acces to your twitter account and we do not store you email or any other personal information.</p>
-
-<p class="p-6">Sign in to your twitter account to get started</p>
-
-<div class="p-6">
-  <%= link_to image_tag('twitter.png', border: 0), register_twitter_path %>
-</div>
+<% if session[:oauth_token].blank? %>
+  <p class="p-6">Sign in to your twitter account to get started</p>
+  <div class="p-6">
+    <%= link_to image_tag('twitter.png', border: 0), register_twitter_path %>
+  </div>
+<% end %>
