@@ -3,5 +3,5 @@
   <% if @tweet_image_url.present? %>
     <img src=<%= @tweet_image_url %> />
   <% end %>
-  <span><%= @tweet_user %></span>
+  <span><%= "@" + @tweet_user %></span>
 <% end %>

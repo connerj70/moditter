@@ -33,12 +33,8 @@ class UsersController < ApplicationController
     logger.error("There was an unexpected error in show: #{e}")
   end
 
-  private
-
-  def authenticate_user
-    unless session[:oauth_token].present? && session[:oauth_token_secret].present?
-      flash[:error] = 'You must be logged in to access this section'
-      redirect_to register_path
-    end
+  def logout
+    session.destroy
+    redirect_to root_path
   end
 end

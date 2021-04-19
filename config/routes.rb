@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root to: 'users#register'
   get '/register', to: 'users#register'
   get '/register_twitter', to: 'users#register_twitter'
-  resources :users, except: [:new] 
+  delete '/users/logout', to: 'users#logout'
+  resources :users, except: [:new]
 
   # Callbacks
   get '/twitter_callback', to: 'callbacks#twitter_callback'
