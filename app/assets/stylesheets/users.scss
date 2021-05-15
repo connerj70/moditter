@@ -57,7 +57,7 @@
     cursor: pointer;
 }
 
-.show-tweet:hover {
-    transform: scale(1.01);
-    background-color: coral;
+a:hover {
+    color: white;
+    background: none;
 }

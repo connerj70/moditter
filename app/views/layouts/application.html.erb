@@ -11,8 +11,8 @@
   </head>
 
   <body>
-    <nav class="bg-blue-300 h-5 w-screen p-6 flex justify-left">
-      <h3 class="mr-6">MODITTER</h3>
+    <nav class="bg-blue-300 h-13 w-screen p-6 flex justify-left items-center">
+      <h3 class="mr-6 text-xl">MODITTER</h3>
       <% if session[:oauth_token].present? %>
         <%= link_to "Timeline", @current_user, class: 'mr-4' %>
       <% else %>
