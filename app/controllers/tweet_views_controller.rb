@@ -22,8 +22,12 @@ class TweetViewsController < ApplicationController
 
     twitter_client = Twitter::Client.new(local: local)
     tweet = twitter_client.fetch_tweet(tweet_id: params[:tweet_id], bearer_token: ENV['TWITTER_BEARER_TOKEN'])
-    @tweet_content = tweet['data']['text']
-    @tweet_user = params[:tweet_user]
+    if tweet.has_key?('data') && tweet['data'].present?
+      @tweet_content = tweet['data']['text']
+      @tweet_user = params[:tweet_user]
+    else
+      raise StandardError.new 'The response did not contain a "data" key.'
+    end
 
     if tweet['includes']
       if tweet['includes']['media'].any?
