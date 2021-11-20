@@ -7,7 +7,7 @@ class TweetViewsController < ApplicationController
     user = User.find(params[:user_id])
     tweet_view = user.tweet_view
 
-    if tweet_view&.count && tweet_view&.count > 4
+    if tweet_view&.count && tweet_view&.count > 19
       render :error
       return
     end
